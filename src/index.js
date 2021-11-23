@@ -2,10 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+//REDUX SETUP
+//applyMiddleware and compose are used to add more thank one react extension
+import { createStore, applyMiddleware, compose } from 'redux';
+import rootReducer from './reducers';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+
+//USED TO COMBINE THE REACT DEVTOOLS WITH REACT THUNK
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(rootReducer, composeEnhancer(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
