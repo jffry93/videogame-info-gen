@@ -10,31 +10,31 @@ const GameDetail = () => {
     <div>
       <StyledCardShadow>
         <StyledDetails>
-          <div className='stats'>
+          <StyledStats>
             <div className='rating'>
               <h3>{gameData.name}</h3>
               <h3>Rating:{gameData.rating}</h3>
             </div>
-            <div className='info'>
+            <StyledInfo>
               <h3>Platforms</h3>
-              <div className='platforms'>
+              <StyledPlatforms>
                 {gameData.platforms.map((gameData) => (
                   <h3 key={gameData.platform.id}>{gameData.platform.name}</h3>
                 ))}
-              </div>
-            </div>
-          </div>
-          <div className='media'>
+              </StyledPlatforms>
+            </StyledInfo>
+          </StyledStats>
+          <StyledMedia>
             <img src={gameData.background_image} alt='screenshot' />
-          </div>
-          <div className='description'>
+          </StyledMedia>
+          <StyledDescription>
             <p>{gameData.description_raw}</p>
-          </div>
-          <div className='gallery'>
+          </StyledDescription>
+          <StyledGallery>
             {screenshot.results.map((screen) => (
               <img key={screen.id} src={screen.image} alt='screenshot' />
             ))}
-          </div>
+          </StyledGallery>
         </StyledDetails>
       </StyledCardShadow>
     </div>
@@ -63,7 +63,7 @@ const StyledCardShadow = styled(motion.div)`
 const StyledDetails = styled(motion.div)`
   width: 80%;
   border-radius: 1rem;
-  padding: 2rem 20rem;
+  padding: 2rem 5rem;
   background: white;
   position: absolute;
   left: 10%;
@@ -73,4 +73,40 @@ const StyledDetails = styled(motion.div)`
   }
 `;
 
+const StyledStats = styled(motion.div)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const StyledInfo = styled(motion.div)`
+  text-align: center;
+`;
+
+const StyledPlatforms = styled(motion.div)`
+  display: flex;
+  justify-content: space-evenly;
+  img {
+    margin-left: 3rem;
+  }
+`;
+
+const StyledMedia = styled(motion.div)`
+  margin-top: 5rem;
+  img {
+    width: 100%;
+    height: 60vh;
+    object-fit: cover;
+  }
+`;
+
+const StyledDescription = styled(motion.div)`
+  margin: 5rem 0rem;
+`;
+
+const StyledGallery = styled(motion.div)`
+  img {
+    margin: 1rem 0rem;
+  }
+`;
 export default GameDetail;
