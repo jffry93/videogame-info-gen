@@ -1,3 +1,5 @@
+//THIS ACTION COLLECTS THE GAME DATA FROM THE API WITH AXIOS
+
 import axios from 'axios';
 import { popularGamesURL, upcomingGamesURL, newGamesURL } from '../api';
 

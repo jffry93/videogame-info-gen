@@ -3,32 +3,37 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loadGames } from '../actions/gamesAction';
 //COMPONENTS
 import Game from '../components/Game';
+import GameDetail from '../components/GameDetail';
 //STYLING
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 const Home = () => {
-  //FETCH GAMES
+  //FETCH GAMES DATA FROM API BY DISPTACHING ACTION
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadGames());
   }, [dispatch]);
-  //GET THE DATA BACK FROM STATE
-  const { popular, upcoming, newGames } = useSelector((state) => state.games);
-
+  //GET THE UPDATED DATA BACK FROM REDUCER
+  const { popular, upcoming, newGames } = useSelector((state) => state.games); //EXTRACT KEYS FROM GAMES REDUCER
+  //console.log(useSelector((state) => state.games));
   return (
     <StyledGamelist>
+      <GameDetail />
       <h2>Upcoming Games</h2>
       <StyledGames>
-        {upcoming.map((game) => (
-          <Game
-            name={game.name}
-            released={game.released}
-            id={game.id}
-            image={game.background_image}
-            key={game.id}
-          />
-        ))}
+        {
+          /*LOOP GAME COMPONENT AND PASS DATA DOWN WITH PROPS*/
+          upcoming.map((game) => (
+            <Game
+              name={game.name}
+              released={game.released}
+              id={game.id}
+              image={game.background_image}
+              key={game.id}
+            />
+          ))
+        }
       </StyledGames>
       <h2>Popular Games</h2>
       <StyledGames>

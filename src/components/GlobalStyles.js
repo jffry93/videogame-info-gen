@@ -13,6 +13,9 @@ html{
     &::-webkit-scrollbar-thumb{
         background-color: darkgrey;
     }
+    &::-webkit-scrollbar-track{
+        background-color: white;
+    }
 }
 body {
     font-family: 'Montserrat', sans-serif;

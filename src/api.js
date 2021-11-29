@@ -32,11 +32,12 @@ const popular_games = `https://api.rawg.io/api/games?key=${apiKey}&dates=${prevY
 const upcoming_games = `https://api.rawg.io/api/games?key=${apiKey}&dates=${currentDate},${nextYear}&ordering=-added&page_size=10`;
 const newGames = `https://api.rawg.io/api/games?key=${apiKey}&dates=${prevYear},${currentDate}&ordering=-released&page_size=10`;
 
-//the completed URL
+//HOME PAGE GAMES
 export const popularGamesURL = () => `${popular_games}`;
 export const upcomingGamesURL = () => `${upcoming_games}`;
 export const newGamesURL = () => `${newGames}`;
 //GAME DETAILS
+//when specific game is selected
 //exhttps://api.rawg.io/api/games/58751?key=REACT_API-KEY
 export const gameDetailsURL = (game_id) =>
   `https://api.rawg.io/api/games/${game_id}?key=${apiKey}`;

@@ -1,11 +1,11 @@
-const initialState = { game: {} };
+const initialState = {};
 
 const detailReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'GET_DETAIL':
       return {
         ...state,
-        game: action.payload.game,
+        gameData: action.payload.game,
         screenshot: action.payload.screen,
       };
     default:

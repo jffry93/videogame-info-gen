@@ -1,3 +1,5 @@
+//THIS REDUCER IS USED TO HOLD THE API GAME DATA
+
 const initState = {
   popular: [],
   newGames: [],
@@ -19,11 +21,11 @@ const gamesReducer = (state = initState, action) => {
   }
 };
 
-//ACTION CREATOR
-const fetchGames = (userData) => {
-  return {
-    type: 'FETCH GAMES',
-  };
-};
+// //ACTION CREATOR
+// const fetchGames = (userData) => {
+//   return {
+//     type: 'FETCH GAMES',
+//   };
+// };
 
 export default gamesReducer;
