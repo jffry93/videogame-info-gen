@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 //REDUX
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+//RESIZE IMAGE
+import { smallImage } from '../util';
 
 const GameDetail = () => {
   const history = useNavigate();
@@ -37,14 +39,21 @@ const GameDetail = () => {
               </StyledInfo>
             </StyledStats>
             <StyledMedia>
-              <img src={gameData.background_image} alt='screenshot' />
+              <img
+                src={smallImage(gameData.background_image, 1280)}
+                alt='screenshot'
+              />
             </StyledMedia>
             <StyledDescription>
               <p>{gameData.description_raw}</p>
             </StyledDescription>
             <StyledGallery>
               {screenshot.results.map((screen) => (
-                <img key={screen.id} src={screen.image} alt='screenshot' />
+                <img
+                  key={screen.id}
+                  src={smallImage(screen.image, 1280)}
+                  alt='screenshot'
+                />
               ))}
             </StyledGallery>
           </StyledDetails>
