@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 //RESIZE IMAGE
 import { smallImage } from '../util';
 
-const GameDetail = () => {
+const GameDetail = ({ pathId }) => {
   const history = useNavigate();
   const exitDetailHandler = (e) => {
     const element = e.target;
@@ -23,10 +23,12 @@ const GameDetail = () => {
     <>
       {!isLoading && (
         <StyledCardShadow className='shadow' onClick={exitDetailHandler}>
-          <StyledDetails>
+          <StyledDetails layoutId={pathId}>
             <StyledStats>
               <div className='rating'>
-                <h3>{gameData.name}</h3>
+                <motion.h3 layoutId={`title ${pathId}`}>
+                  {gameData.name}
+                </motion.h3>
                 <h3>Rating:{gameData.rating}</h3>
               </div>
               <StyledInfo>
@@ -39,7 +41,8 @@ const GameDetail = () => {
               </StyledInfo>
             </StyledStats>
             <StyledMedia>
-              <img
+              <motion.img
+                layoutId={`image ${pathId}`}
                 src={smallImage(gameData.background_image, 1280)}
                 alt='screenshot'
               />

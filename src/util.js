@@ -9,8 +9,6 @@ export const smallImage = (imagePath, size) => {
           `media/resize/${size}/-/screenshots`
         )
       : imagePath.replace('/media/games/', `/media/resize/${size}/-/games/`);
-  } else {
-    image = imagePath;
   }
   return image;
 };
