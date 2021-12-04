@@ -5,6 +5,16 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 //RESIZE IMAGE
 import { smallImage } from '../util';
+//PLATFORM ICONS
+import playstation from '../img/playstation.svg';
+import steam from '../img/steam.svg';
+import apple from '../img/apple.svg';
+import xbox from '../img/xbox.svg';
+import nintendo from '../img/nintendo.svg';
+import gamepad from '../img/gamepad.svg';
+//RATING ICONS
+import emptyStar from '../img/star-empty.png';
+import fullStar from '../img/star-full.png';
 
 const GameDetail = ({ pathId }) => {
   const history = useNavigate();
@@ -13,6 +23,37 @@ const GameDetail = ({ pathId }) => {
     if (element.classList.contains('shadow')) {
       document.body.style.overflow = 'auto';
       history('/');
+    }
+  };
+  //RATING LOGIC
+  const getStars = () => {
+    const stars = [];
+    const rating = Math.floor(gameData.rating);
+    for (let i = 1; i <= 5; i++) {
+      if (i <= rating) {
+        stars.push(<img alt='full-star' key={i} src={fullStar}></img>);
+      } else {
+        stars.push(<img alt='empty-star' key={i} src={emptyStar}></img>);
+      }
+    }
+    return stars;
+  };
+
+  //GET ICONS
+  const getPlatformIcons = (platform) => {
+    switch (platform) {
+      case 'PlayStation 4':
+        return playstation;
+      case 'Xbox One':
+        return xbox;
+      case 'PC':
+        return steam;
+      case 'Nintendo Switch':
+        return nintendo;
+      case 'iOS':
+        return apple;
+      default:
+        return gamepad;
     }
   };
   //extract data from redux store
@@ -30,12 +71,17 @@ const GameDetail = ({ pathId }) => {
                   {gameData.name}
                 </motion.h3>
                 <h3>Rating:{gameData.rating}</h3>
+                {getStars()}
               </div>
               <StyledInfo>
                 <h3>Platforms</h3>
                 <StyledPlatforms>
                   {gameData.platforms.map((gameData) => (
-                    <h3 key={gameData.platform.id}>{gameData.platform.name}</h3>
+                    <img
+                      alt={gameData.platform.name}
+                      key={gameData.platform.id}
+                      src={getPlatformIcons(gameData.platform.name)}
+                    ></img>
                   ))}
                 </StyledPlatforms>
               </StyledInfo>
@@ -74,6 +120,7 @@ const StyledCardShadow = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 5;
   &::-webkit-scrollbar {
     width: 0%.5rem;
   }
@@ -93,6 +140,7 @@ const StyledDetails = styled(motion.div)`
   position: absolute;
   left: 10%;
   color: black;
+  z-index: 10;
   img {
     width: 100%;
   }
@@ -102,6 +150,11 @@ const StyledStats = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  img {
+    display: inline;
+    height: 2rem;
+    width: 2rem;
+  }
 `;
 
 const StyledInfo = styled(motion.div)`
