@@ -44,6 +44,10 @@ a{
 img{
     display: block;
 }
+input{
+    font-weight: bold;
+    font-family: 'Monserrat', sans-serif;
+}
 `;
 
 export default GlobalStyles;

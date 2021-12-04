@@ -36,12 +36,14 @@ const newGames = `https://api.rawg.io/api/games?key=${apiKey}&dates=${prevYear},
 export const popularGamesURL = () => `${popular_games}`;
 export const upcomingGamesURL = () => `${upcoming_games}`;
 export const newGamesURL = () => `${newGames}`;
+
 //GAME DETAILS
-//when specific game is selected
-//exhttps://api.rawg.io/api/games/58751?key=REACT_API-KEY
 export const gameDetailsURL = (game_id) =>
   `https://api.rawg.io/api/games/${game_id}?key=${apiKey}`;
-//GAME SCREENSHOTS
 export const gameScreenshotURL = (game_id) =>
   `https://api.rawg.io/api/games/${game_id}/screenshots?key=${apiKey}`;
-//console.log(nextYear);
+
+//SEARCH BAR GAMES
+export const searchGamesURL = (game_name) =>
+  `https://api.rawg.io/api/games?key=${apiKey}&search=${game_name}&page_size=9`;
+console.log(searchGamesURL);

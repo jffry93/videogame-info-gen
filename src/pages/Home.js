@@ -20,7 +20,9 @@ const Home = () => {
     dispatch(loadGames());
   }, [dispatch]);
   //GET THE UPDATED DATA BACK FROM REDUCER
-  const { popular, upcoming, newGames } = useSelector((state) => state.games); //EXTRACT KEYS FROM GAMES REDUCER
+  const { popular, upcoming, newGames, searched } = useSelector(
+    (state) => state.games
+  ); //EXTRACT KEYS FROM GAMES REDUCER
   //console.log(useSelector((state) => state.games));
   return (
     <StyledGamelist>
@@ -28,6 +30,27 @@ const Home = () => {
         <AnimatePresence>
           {pathId && <GameDetail pathId={pathId} />}
         </AnimatePresence>
+        {searched.length ? (
+          <div className='searched'>
+            <h2>Searched Games</h2>
+            <StyledGames>
+              {
+                /*LOOP GAME COMPONENT AND PASS DATA DOWN WITH PROPS*/
+                searched.map((game) => (
+                  <Game
+                    name={game.name}
+                    released={game.released}
+                    id={game.id}
+                    image={game.background_image}
+                    key={game.id}
+                  />
+                ))
+              }
+            </StyledGames>
+          </div>
+        ) : (
+          ''
+        )}
         <h2>Upcoming Games</h2>
         <StyledGames>
           {
