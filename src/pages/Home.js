@@ -8,6 +8,8 @@ import GameDetail from '../components/GameDetail';
 import styled from 'styled-components';
 import { motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
+//animation
+import { fadeIn } from '../animations';
 
 const Home = () => {
   //GET CURRENT URL LOCATION
@@ -25,7 +27,7 @@ const Home = () => {
   ); //EXTRACT KEYS FROM GAMES REDUCER
   //console.log(useSelector((state) => state.games));
   return (
-    <StyledGamelist>
+    <StyledGamelist variants={fadeIn} initial='hidden' animate='show'>
       <AnimateSharedLayout type='switch'>
         <AnimatePresence>
           {pathId && <GameDetail pathId={pathId} />}

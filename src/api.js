@@ -45,5 +45,4 @@ export const gameScreenshotURL = (game_id) =>
 
 //SEARCH BAR GAMES
 export const searchGamesURL = (game_name) =>
-  `https://api.rawg.io/api/games?key=${apiKey}&search=${game_name}&page_size=9`;
-console.log(searchGamesURL);
+  `https://api.rawg.io/api/games?key=${apiKey}&search=${game_name}&page_size=10`;
